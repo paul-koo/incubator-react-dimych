@@ -1,6 +1,6 @@
 type RatingPropsType = {
     value: 0 | 1 | 2 | 3 | 4 | 5;
-    onclick: (number: 0 | 1 | 2 | 3 | 4 | 5) => void;
+    onClick: (number: 0 | 1 | 2 | 3 | 4 | 5) => void;
 };
 
 export function Rating(props: RatingPropsType) {
@@ -9,27 +9,27 @@ export function Rating(props: RatingPropsType) {
             <Star
                 selected={props.value > 0}
                 value={1}
-                onclick={props.onclick}
+                onClick={props.onClick}
             />
             <Star
                 selected={props.value > 1}
                 value={2}
-                onclick={props.onclick}
+                onClick={props.onClick}
             />
             <Star
                 selected={props.value > 2}
                 value={3}
-                onclick={props.onclick}
+                onClick={props.onClick}
             />
             <Star
                 selected={props.value > 3}
                 value={4}
-                onclick={props.onclick}
+                onClick={props.onClick}
             />
             <Star
                 selected={props.value > 4}
                 value={5}
-                onclick={props.onclick}
+                onClick={props.onClick}
             />
         </div>
     );
@@ -38,13 +38,13 @@ export function Rating(props: RatingPropsType) {
 type StarPropsType = {
     selected: boolean;
     value: 0 | 1 | 2 | 3 | 4 | 5;
-    onclick: (number: 0 | 1 | 2 | 3 | 4 | 5) => void;
+    onClick: (number: 0 | 1 | 2 | 3 | 4 | 5) => void;
 };
 
 function Star(props: StarPropsType) {
     return (
         <span
-            onClick={() => props.onclick(props.value)}
+            onClick={() => props.onClick(props.value)}
             style={{ cursor: "pointer" }}
         >
             {props.selected ? <b>Star</b> : "Star"}
