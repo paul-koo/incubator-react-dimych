@@ -11,3 +11,14 @@ test('collpsed should be true', () => {
 
     expect(newState.collapsed).toBe(true);
 });
+
+test('reducer should throw error becauses avction type os incorrect', () => {
+    //data
+    const state: StateType = {
+        collapsed: false,
+    };
+
+    expect(() => {
+        reducer(state, { type: 'FAKE' });
+    }).toThrowError();
+});
