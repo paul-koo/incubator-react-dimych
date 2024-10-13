@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { OnOff } from "./OnOff";
-import { log } from "console";
+import { useState } from 'react';
+import { OnOff } from './OnOff';
 
 export default {
-    title: "OnOff",
+    title: 'OnOff',
     component: OnOff,
 };
 

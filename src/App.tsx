@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
-import { UncontrolledOnOff } from './components/UncontrolledOnOff';
 import { UncontrolledAccordion } from './components/UncontrolledAccorfion/UncontrolledAccordion';
-import { UncontroledRating } from './components/UncontrolledRating';
 import { Accordion } from './components/Accordion/Accordion';
 import { OnOff } from './components/onOff/OnOff';
 import { Rating } from './components/Rating/Rating';
 import { Select } from './components/Select/Select';
 import { v4 } from 'uuid';
+import { UncontroledRating } from './components/Rating/UncontrolledRating';
+import { UncontrolledOnOff } from './components/onOff/UncontrolledOnOff';
 
 function App(props: any) {
     const [ratingValue, setRatingValue] = useState<0 | 1 | 2 | 3 | 4 | 5>(0);

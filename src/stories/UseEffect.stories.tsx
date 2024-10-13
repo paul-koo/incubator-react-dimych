@@ -47,6 +47,10 @@ export const SetTimeoutExample = () => {
 
     const [counter, setCounter] = useState(time); // в useState можем передать функцию для исключения его многокрантого пересчета
 
+    function getTwoDigitString(number: number) {
+        return number < 10 ? `0${number}` : `${number}`;
+    }
+
     useEffect(() => {
         setInterval(() => {
             setCounter((state) => {
@@ -58,27 +62,54 @@ export const SetTimeoutExample = () => {
                         hour: state.hour + 1,
                         minutes: 0,
                         seconds: 0,
-                        dateHour: time.getHours(),
-                        dateMinutes: time.getMinutes(),
-                        dateSeconds: time.getSeconds(),
+                        dateHour:
+                            time.getHours() < 10
+                                ? +`0${time.getHours()}`
+                                : time.getHours(),
+                        dateMinutes:
+                            time.getMinutes() < 10
+                                ? +`0${time.getMinutes()}`
+                                : time.getMinutes(),
+                        dateSeconds:
+                            time.getSeconds() < 10
+                                ? +`0${time.getSeconds()}`
+                                : time.getSeconds(),
                     };
                 } else if (state.seconds > 58) {
                     return {
                         ...state,
                         minutes: state.minutes + 1,
                         seconds: 0,
-                        dateHour: time.getHours(),
-                        dateMinutes: time.getMinutes(),
-                        dateSeconds: time.getSeconds(),
+                        dateHour:
+                            time.getHours() < 10
+                                ? +`0${time.getHours()}`
+                                : time.getHours(),
+                        dateMinutes:
+                            time.getMinutes() < 10
+                                ? +`0${time.getMinutes()}`
+                                : time.getMinutes(),
+                        dateSeconds:
+                            time.getSeconds() < 10
+                                ? +`0${time.getSeconds()}`
+                                : time.getSeconds(),
                     };
                 } else {
                     console.log(time.getMinutes());
                     return {
                         ...state,
                         seconds: state.seconds + 1,
-                        dateHour: time.getHours(),
-                        dateMinutes: time.getMinutes(),
-                        dateSeconds: time.getSeconds(),
+                        dateHour:
+                            time.getHours() < 10
+                                ? +`0${time.getHours()}`
+                                : time.getHours(),
+                        dateMinutes:
+                            time.getMinutes() < 10
+                                ? +`0${time.getMinutes()}`
+                                : time.getMinutes(),
+                        dateSeconds:
+                            time.getSeconds() < 10
+                                ? +`0${time.getSeconds()}`
+                                : time.getSeconds(),
                     };
                 }
             });
@@ -100,9 +131,9 @@ export const SetTimeoutExample = () => {
                 +
             </button>
             <div>
-                {counter.hour > 9 ? counter.hour : '0' + counter.hour}:
-                {counter.minutes > 9 ? counter.minutes : '0' + counter.minutes}:
-                {counter.seconds > 9 ? counter.seconds : '0' + counter.seconds}
+                {getTwoDigitString(counter.hour)}:
+                {getTwoDigitString(counter.minutes)}:
+                {getTwoDigitString(counter.seconds)}
             </div>
             <div>
                 {counter.dateHour}:{counter.dateMinutes}:{counter.dateSeconds}
