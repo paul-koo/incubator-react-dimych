@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
+import styles from './styles.module.css';
 
-export const Clock = () => {
+type Props = {
+    mode: 'digital' | 'analog';
+};
+
+export const Clock = (props: Props) => {
     const initialState = {
         hours: new Date().getHours(),
         minutes: new Date().getMinutes(),
@@ -25,10 +30,48 @@ export const Clock = () => {
             clearInterval(intervalId);
         }; //после того как компонента умирает useEffect запускает э ту функцию
     });
+
+    const secondsStyle = {
+        transform: `rotate(${+getTwoDigitString(time.seconds) * 6}deg)`,
+    };
+    const minutesStyle = {
+        transform: `rotate(${+getTwoDigitString(time.minutes) * 6}deg)`,
+    };
+    const hoursStyle = {
+        transform: `rotate(${+getTwoDigitString(time.hours) * 30}deg)`,
+    };
+
     return (
         <div>
-            {getTwoDigitString(time.hours)}:{getTwoDigitString(time.minutes)}:
-            {getTwoDigitString(time.seconds)}
+            {props.mode === 'digital' ? (
+                <>
+                    {getTwoDigitString(time.hours)}:
+                    {getTwoDigitString(time.minutes)}:
+                    {getTwoDigitString(time.seconds)}
+                </>
+            ) : (
+                <div className={`${styles.clock}`}>
+                    <div className={styles['analog-clock']}>
+                        <div
+                            className={`${styles.dial} ${styles.seconds}`}
+                            style={secondsStyle}
+                        />
+                        <div
+                            className={`${styles.dial} ${styles.minutes}`}
+                            style={minutesStyle}
+                        />
+                        <div
+                            className={`${styles.dial} ${styles.hours}`}
+                            style={hoursStyle}
+                        />
+                    </div>
+                    <div className={'digital-clock'}>
+                        {getTwoDigitString(time.hours)}:
+                        {getTwoDigitString(time.minutes)}:
+                        {getTwoDigitString(time.seconds)}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
